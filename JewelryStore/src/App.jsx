@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { useState } from "react";
 import "./App.css";
 import Home from "./components/Home";
 import Account from "./components/Account";
@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<Account />} />
-        <Route path="/login" element={<Login token={token} />} />
+        <Route path="/login" element={<Login setToken={setToken} />} />
       </Routes>
       </BrowserRouter>
     </div>

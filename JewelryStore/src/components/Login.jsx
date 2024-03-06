@@ -1,36 +1,43 @@
-function Login (props){
-    const [userInfo, setUserInfo] = useState({
-        username: "",
-        password: "",
-      });
-    
-    const [errorMsg, setError] = useState(null);
+import { useState } from "react";
+//api
+import { useLoginMutation } from "../redux/api";
 
-    const loginEvent = async (event) => {
-        event.preventDefault();
-        const {data, error} = await loginEvent(userInfo);
+function Login(props) {
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+    password: "",
+  });
 
-        of (error) {
+  const [errorMsg, setError] = useState(null);
+  const [login] = useLoginMutation();
 
-        } else {
+  const loginEvent = async (event) => {
+    event.preventDefault();
+    const { data, error } = await login(userInfo);
 
-        }
-    };
+    if (error) {
+      // error.data
+      setError(error.data);
+    } else {
+      //data.token
+      props.setToken(data.token);
+    }
+  };
 
-    const onUserInput = (e) => {
-        if (errorMsg){
-            setError(null);
-        }
-        setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
-      };
+  const onUserInput = (e) => {
+    if (errorMsg) {
+      setError(null);
+    }
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+  };
 
-    return(
-        <div>
-            <h2>Login</h2>
-            {/*error message */}
-{errorMsg ? <p>errorMsg</p>: <span />}
-<form onSubmit ={loginEvent}>
-<label>
+  return (
+    <div>
+      <h2>Login</h2>
+      {/*error message */}
+      {errorMsg ? <p>errorMsg</p> : <span />}
+      <form onSubmit={loginEvent}>
+        <label>
           Username
           <input
             type="text"
@@ -40,7 +47,7 @@ function Login (props){
             onChange={onUserInput}
           />
         </label>
-        
+
         <label htmlFor="password">Password</label>
         <input
           name="password"
@@ -49,10 +56,10 @@ function Login (props){
           value={userInfo.password}
           onChange={onUserInput}
         />
-         <button>Login</button>
-</form>
-        </div>
-    );
+        <button>Login</button>
+      </form>
+    </div>
+  );
 }
 
 export default Login;
