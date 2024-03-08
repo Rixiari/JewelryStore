@@ -20,7 +20,14 @@ export const apiSlice = createApi({
         body: loginUser,
       }),
     }),
+    productList: builder.query({
+      query: (getProductList) => ({
+        url: "/products",
+        method: "GET",
+        body: getProductList,
+      }),
+    }),
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation } = apiSlice;
+export const { useRegisterMutation, useLoginMutation, useProductListQuery } = apiSlice;

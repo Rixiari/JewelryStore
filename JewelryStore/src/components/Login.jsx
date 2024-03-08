@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 //api
 import { useLoginMutation } from "../redux/api";
 
+
+
 function Login(props) {
+
+
   const [userInfo, setUserInfo] = useState({
     username: "",
     password: "",
@@ -10,6 +15,7 @@ function Login(props) {
 
   const [errorMsg, setError] = useState(null);
   const [login] = useLoginMutation();
+  const navigate = useNavigate();
 
   const loginEvent = async (event) => {
     event.preventDefault();
@@ -21,6 +27,8 @@ function Login(props) {
     } else {
       //data.token
       props.setToken(data.token);
+      //navigate to home after login
+      navigate("/");
     }
   };
 
