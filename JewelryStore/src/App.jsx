@@ -10,15 +10,15 @@ import ProductCard from "./components/ProductCard";
 
 function App() {
   const [token, setToken] = useState(null);
-  
+  console.log(token);
   return (
     <div>
       <BrowserRouter>
-      <NavBar />
+      <NavBar token ={token}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/allproducts" element={<Products />} />
-        <Route path="/product" element={<Product />} />
+        <Route path="/product" element={<ProductCard />} />
         <Route path="/account" element={<Account />} />
         <Route path="/login" element={<Login setToken={setToken} />} />
       </Routes>

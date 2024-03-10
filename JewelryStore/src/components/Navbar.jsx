@@ -12,16 +12,16 @@ function NavBar(props) {
     return (
       <nav>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/products">All Products</NavLink>
+        <NavLink to="/allproducts">All Products</NavLink>
         <NavLink to="/cart">Cart</NavLink>
-        <a onCLick={logoutUser}>Logout</a>
+        <NavLink onClick={logoutUser}>Logout</NavLink>
       </nav>
     );
   }
   return (
     <nav>
       <NavLink to="/">Home</NavLink>
-      <NavLink to="/products">Products</NavLink>
+      <NavLink to="/allproducts">Products</NavLink>
       <NavLink to="/login">Login</NavLink>
       <NavLink to="/cart">Cart</NavLink>
     </nav>

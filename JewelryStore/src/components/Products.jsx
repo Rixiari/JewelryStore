@@ -4,7 +4,7 @@ import { useProductListQuery } from "../redux/api";
 //components
 import ProductCard from "./ProductCard";
 
-function Products() {
+function Products(props) {
     const navigate = useNavigate();
     const {data,error, isLoading} = useProductListQuery();
 
@@ -25,9 +25,9 @@ function Products() {
             key={product.id}
             onClick={() => navigate(`/products/${product.id}`)}
           >
-            {/* Use the book's ID as the key for this div */}
+            {/* Use the product's ID as the key for this div */}
             <div className="product-card">
-              {/* Display the book's image, with the book's title as alt text */}
+              {/* Display the product's image, with the book's title as alt text */}
               <div className="product-image-container">
                 <img className="product-image" src={product.image} />
               </div>
