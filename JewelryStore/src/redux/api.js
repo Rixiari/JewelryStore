@@ -34,7 +34,14 @@ export const apiSlice = createApi({
         // // body: productId,
       }),
     }),
+    cart: builder.query({
+      query: (cartId) => ({
+        url: `/products/${cartId}`,
+        // method: "GET",
+        // // body: cartId,
+      }),
+    }),
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation, useProductListQuery, useProductQuery } = apiSlice;
+export const { useRegisterMutation, useLoginMutation, useProductListQuery, useProductQuery, useCartQuery } = apiSlice;

@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import NavBar from "./components/Navbar";
 import Products from "./components/Products";
 import ProductCard from "./components/ProductCard";
+import Cart from "./components/Cart";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -21,6 +22,7 @@ function App() {
         <Route path="/products/:productId" element={<ProductCard />} />
         <Route path="/account" element={<Account />} />
         <Route path="/login" element={<Login setToken={setToken} />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       </BrowserRouter>
     </div>
