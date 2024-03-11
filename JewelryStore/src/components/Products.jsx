@@ -1,12 +1,12 @@
-//api
-import { useNavigate } from "react-router";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useProductListQuery } from "../redux/api";
-//components
-import ProductCard from "./ProductCard";
+import { useUser } from "../redux/UserContext"; // Import useUser hook from UserContext
 
 function Products(props) {
-    const navigate = useNavigate();
-    const {data,error, isLoading} = useProductListQuery();
+  const navigate = useNavigate();
+  const { data, error, isLoading } = useProductListQuery();
+  const { isLoggedIn } = useUser(); // Get the isLoggedIn status from the user context
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -16,31 +16,33 @@ function Products(props) {
     return <h3>{error.data.message}</h3>;
   }
 
+  const handleAddToCart = (product) => {
+    // Logic to handle adding product to cart
+    console.log("Adding product to cart:", product);
+  };
+
   return (
     <section>
       <div className="productList">
-        {/* Map through the data array and generate a div for each book */}
         {data?.map((product) => (
-          <button
-            key={product.id}
-            onClick={() => navigate(`/products/${product.id}`)}
-          >
-            {/* Use the product's ID as the key for this div */}
-            <div className="product-card">
-              {/* Display the product's image, with the book's title as alt text */}
-              <div className="product-image-container">
-                <img className="product-image" src={product.image} />
-              </div>
-
-              <div className="product-details">
-                <h2> Title: {product.title} </h2>
-                <p> price: {product.price} </p>
-                <p> category: {product.price} </p>
-                <p> description: {product.category} </p>
-              </div>
+          <div key={product.id} className="product-card">
+            <div className="product-image-container">
+              <img className="product-image" src={product.image} alt={product.title} />
             </div>
-          </button>
-        ))};
+            <div className="product-details">
+              <h2>Title: {product.title}</h2>
+              <p>Price: {product.price}</p>
+              <p>Category: {product.category}</p>
+              {/* Render "Add to Cart" button only for logged-in users */}
+              {isLoggedIn && (
+                <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+              )}
+            </div>
+            <button onClick={() => navigate(`/products/${product.id}`)}>
+              View Details
+            </button>
+          </div>
+        ))}
       </div>
     </section>
   );

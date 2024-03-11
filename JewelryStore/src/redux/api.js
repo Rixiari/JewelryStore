@@ -27,7 +27,14 @@ export const apiSlice = createApi({
         body: getProductList,
       }),
     }),
+    product: builder.query({
+      query: (productId) => ({
+        url: `/products/${productId}`,
+        // method: "GET",
+        // // body: productId,
+      }),
+    }),
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation, useProductListQuery } = apiSlice;
+export const { useRegisterMutation, useLoginMutation, useProductListQuery, useProductQuery } = apiSlice;
