@@ -7,7 +7,7 @@ import Login from "./components/Login";
 import NavBar from "./components/Navbar";
 import Products from "./components/Products";
 import ProductCard from "./components/ProductCard";
-import {Cart} from "./components/Cart";
+import Cart from "./components/Cart";
 
 function App() {
   const [token, setToken] = useState(null);

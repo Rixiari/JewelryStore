@@ -1,54 +1,39 @@
-// 2 parts to the cart
-// 1/2. cart page = component
-// 2/2. cart state, global state, all components would have access to. Reference unit 3, 27B
-
 import React from "react";
-// import { useCartQuery } from "../redux/api";
+import { useSelector, useDispatch } from "react-redux";
+import { selectHistory, deleteProduct } from "../redux/cartSlice";
 
 export function Cart() {
-//   const { data: cart, error, isLoading } = useCartQuery();
-let totalPrice = 0;
-let totalQuantity = 0;
-let cart = null;
-
-//   if (isLoading) {
-//     return <p>Loading cart...</p>;
-//   }
-
-//   if (error) {
-//     return <p>Error: {error.message}</p>;
-//   }
-console.log(cart);
+  const history = useSelector(selectHistory);
+  const dispatch = useDispatch();
 
   // Calculate total price and quantity
-  if (cart){
-  totalPrice = cart.reduce((total, product) => total + parseFloat(product.price), 0);
-  totalQuantity = cart.length;}
+  const totalPrice = history.reduce((total, transaction) => total + parseFloat(transaction.price), 0);
+  const totalQuantity = history.length;
 
   const handleCheckout = () => {
-    // Handle checkout logic
-    console.log("Checkout clicked");
+    // Dispatch an action to clear the cart (delete all products)
+    history.forEach(transaction => {
+      dispatch(deleteProduct({ productId: transaction.productId }));
+    });
+    // Log checkout
+    console.log("Checkout completed");
   };
 
   return (
     <div className="cart">
       <h2>Shopping Cart</h2>
-      {cart && cart.length === 0 ? (
+      {history.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
         <>
           <ul>
-            {cart && cart.map((product, index) => (
+            {history.map((transaction, index) => (
               <li key={index}>
                 <div className="cart-item">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="cart-item-image"
-                  />
                   <div className="cart-item-details">
-                    <h3>{product.title}</h3>
-                    <p>Price: {product.price}</p>
+                    <h3>{transaction.title}</h3>
+                    <p>Category: {transaction.category}</p>
+                    <p>Price: {transaction.price}</p>
                   </div>
                 </div>
               </li>
@@ -65,3 +50,4 @@ console.log(cart);
   );
 }
 
+export default Cart;
