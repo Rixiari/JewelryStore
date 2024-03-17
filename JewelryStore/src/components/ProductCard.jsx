@@ -3,7 +3,7 @@ import { useProductQuery } from "../redux/api"
 import { useParams, useNavigate } from "react-router-dom";
 import React from "react";
 
-export default function ProductCard() {
+export default function ProductCard(props) {
   // Get the item id from the url parameters
   const { productId } = useParams();
   const { data, error, isLoading } = useProductQuery(productId);
@@ -27,7 +27,7 @@ export default function ProductCard() {
   }
 
   // Ensure that the product data exists before rendering
-  const product = data?.product;
+  const product = data;
   if (!product) {
     return <div>Product not found.</div>;
   }
@@ -45,7 +45,7 @@ export default function ProductCard() {
           <p>Description: {product.description}</p> {/* Fixing the category display */}
         </div>
       </div>
-      <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+    {props.token && <button onClick={() => handleAddToCart(product)}>Add to Cart</button>}
     </section>
   );
 }

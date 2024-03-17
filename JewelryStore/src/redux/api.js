@@ -34,13 +34,14 @@ export const apiSlice = createApi({
         // // body: productId,
       }),
     }),
-    cart: builder.query({
-      query: (cartId) => ({
-        url: `/products/${cartId}`,
+    //Using cartSlice instead
+    // cart: builder.query({
+    //   query: () => ({
+    //     url: `/carts/${7}`,
         // method: "GET",
         // // body: cartId,
-      }),
-    }),
+    //   }),
+    // }),
   }),
 });
 

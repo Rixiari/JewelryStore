@@ -13,7 +13,7 @@ function NavBar(props) {
       <nav>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/allproducts">All Products</NavLink>
-        <NavLink to="/cart">Cart</NavLink>
+        <NavLink to="/carts">Cart</NavLink>
         <NavLink onClick={logoutUser}>Logout</NavLink>
       </nav>
     );
@@ -23,7 +23,7 @@ function NavBar(props) {
       <NavLink to="/">Home</NavLink>
       <NavLink to="/allproducts">Products</NavLink>
       <NavLink to="/login">Login</NavLink>
-      <NavLink to="/cart">Cart</NavLink>
+      <NavLink to="/carts">Cart</NavLink>
     </nav>
   );
 }

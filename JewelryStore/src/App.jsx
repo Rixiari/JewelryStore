@@ -7,7 +7,7 @@ import Login from "./components/Login";
 import NavBar from "./components/Navbar";
 import Products from "./components/Products";
 import ProductCard from "./components/ProductCard";
-import Cart from "./components/Cart";
+import {Cart} from "./components/Cart";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -19,10 +19,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/allproducts" element={<Products />} />
-        <Route path="/products/:productId" element={<ProductCard />} />
+        <Route path="/products/:productId" element={<ProductCard token={token} />} />
         <Route path="/account" element={<Account />} />
         <Route path="/login" element={<Login setToken={setToken} />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/carts" element={<Cart />} />
       </Routes>
       </BrowserRouter>
     </div>

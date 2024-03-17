@@ -3,22 +3,27 @@
 // 2/2. cart state, global state, all components would have access to. Reference unit 3, 27B
 
 import React from "react";
-import { useCartQuery } from "../redux/api";
+// import { useCartQuery } from "../redux/api";
 
-function Cart() {
-  const { data: cart, error, isLoading } = useCartQuery();
+export function Cart() {
+//   const { data: cart, error, isLoading } = useCartQuery();
+let totalPrice = 0;
+let totalQuantity = 0;
+let cart = null;
 
-  if (isLoading) {
-    return <p>Loading cart...</p>;
-  }
+//   if (isLoading) {
+//     return <p>Loading cart...</p>;
+//   }
 
-  if (error) {
-    return <p>Error: {error.message}</p>;
-  }
+//   if (error) {
+//     return <p>Error: {error.message}</p>;
+//   }
+console.log(cart);
 
   // Calculate total price and quantity
-  const totalPrice = cart.reduce((total, product) => total + parseFloat(product.price), 0);
-  const totalQuantity = cart.length;
+  if (cart){
+  totalPrice = cart.reduce((total, product) => total + parseFloat(product.price), 0);
+  totalQuantity = cart.length;}
 
   const handleCheckout = () => {
     // Handle checkout logic
@@ -28,12 +33,12 @@ function Cart() {
   return (
     <div className="cart">
       <h2>Shopping Cart</h2>
-      {cart.length === 0 ? (
+      {cart && cart.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
         <>
           <ul>
-            {cart.map((product, index) => (
+            {cart && cart.map((product, index) => (
               <li key={index}>
                 <div className="cart-item">
                   <img
@@ -60,4 +65,3 @@ function Cart() {
   );
 }
 
-export default Cart;

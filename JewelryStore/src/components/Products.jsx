@@ -21,26 +21,33 @@ function Products(props) {
   }, [data, categoryFilter, priceRangeFilter, sortOption]);
 
   const applyFiltersAndSort = () => {
+    console.log(data);
     let filteredProducts = [...data]; // Make a copy of the data array
 
     // Filter the products based on the selected category
-    if (categoryFilter) {
+    console.log(filteredProducts);
+    if (categoryFilter && categoryFilter !=="") {
       filteredProducts = filteredProducts.filter(
-        (product) => product.category === categoryFilter
+        (product) => product.category.toLowerCase() === categoryFilter.toLowerCase()
       );
     }
+    console.log(categoryFilter);
+    console.log(filteredProducts);
 
     // Filter the products based on the selected price range
-    if (priceRangeFilter) {
+    if (priceRangeFilter && priceRangeFilter !== "" ) {
       const [minPrice, maxPrice] = priceRangeFilter.split("-");
       filteredProducts = filteredProducts.filter((product) => {
         const price = parseFloat(product.price);
+        console.log(minPrice === "", price >= parseFloat(minPrice),(minPrice === "" || price >= parseFloat(minPrice)) )
+        console.log(maxPrice === "",price <= parseFloat(maxPrice), (maxPrice === "" || price <= parseFloat(maxPrice)))
         return (
           (minPrice === "" || price >= parseFloat(minPrice)) &&
           (maxPrice === "" || price <= parseFloat(maxPrice))
         );
       });
     }
+console.log(priceRangeFilter);
 
     // Sort the products based on the selected option
     if (sortOption === "price_asc") {
@@ -57,6 +64,7 @@ function Products(props) {
     setFilteredData(filteredProducts);
   };
 
+
   const handleAddToCart = (product) => {
     // Add product to the cart
     setCart([...cart, product]);
@@ -69,16 +77,19 @@ function Products(props) {
   if (error) {
     return <h3>{error.data.message}</h3>;
   }
-  
+
   return (
     <section>
       <FilterSort
-        categories={["Electronics", "Apparel", "Jewelry"]}
+        categories={["Electronics", "Men's clothing","Women's clothing", "Jewelery"]}
         onFilter={(filters) => {
           setCategoryFilter(filters.category);
           setPriceRangeFilter(filters.priceRange);
         }}
-        onSort={() => {}}
+        // sortBy={["price_asc", "price_desc"]}
+        onSort={(sort) => {
+          setSortOption(sort)
+        }}
       />
       <div className="productList">
         {(filteredData || data)?.map((product) => (
