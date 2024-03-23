@@ -5,8 +5,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  balance: 0,
-  history: [],
+  total: 0,
+  cart: [],
 };
 
 const cartSlice = createSlice({
@@ -15,42 +15,50 @@ const cartSlice = createSlice({
   reducers: {
     deleteProduct: (state, action) => {
       const { productId } = action.payload;
-      const updatedHistory = state.history.filter(transaction => transaction.productId !== productId);
-      const deletedProduct = state.history.find(transaction => transaction.productId === productId);
+      const updatedcart = state.cart.filter(transaction => transaction.productId !== productId);
+      const deletedProduct = state.cart.find(transaction => transaction.productId === productId);
 
       return {
         ...state,
-        history: updatedHistory,
-        balance: state.balance - deletedProduct.amount,
+        cart  : updatedcart ,
+        total: state.total - deletedProduct.amount,
       };
     },
     addProduct: (state, action) => {
-      const { productId, amount } = action.payload;
-      const updatedBalance = state.balance + amount;
-
+        console.log("cartSlice",action);
+      const product = action.payload;
+      let currentQty = 0
+        const newCart = state.cart.filter((item)=>{
+            if(item.id !== product.id){
+                return item
+            } else {
+                currentQty = item.quantity
+            }
+        })
+        newCart.push({...product, quantity:currentQty+1});
+        let productPrice = product.price * (currentQty+1)
       return {
         ...state,
-        history: [
-          ...state.history,
-          { type: "add", productId, amount },
+        cart  : [
+          ...newCart,
         ],
-        balance: updatedBalance,
+        total:state.total+productPrice
       };
     },
     editProduct: (state, action) => {
       const { productId, newAmount } = action.payload;
-      const updatedHistory = state.history.map(transaction =>
+      const updatedcart = state.cart  .map(transaction =>
         transaction.productId === productId
           ? { ...transaction, amount: newAmount }
           : transaction
       );
-      const productTransaction = state.history.find(transaction => transaction.productId === productId);
-      const updatedBalance = state.balance - productTransaction.amount + newAmount;
+      const productTransaction = state.cart.find(transaction => transaction.productId === productId);
+      const updatedtotal = state.total - productTransaction.amount + newAmount;
 
       return {
         ...state,
-        history: updatedHistory,
-        balance: updatedBalance,
+        cart  : updatedcart ,
+        total: updatedtotal,
       };
     },
   },
@@ -58,7 +66,7 @@ const cartSlice = createSlice({
 
 export const { addProduct, deleteProduct, editProduct } = cartSlice.actions;
 
-export const selectBalance = state => state.cart.balance;
-export const selectHistory = state => state.cart.history;
+export const selectTotal = state => state.cartSlice.total;
+export const selectCart = state => state.cartSlice.cart;
 
 export default cartSlice.reducer;

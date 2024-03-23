@@ -28,7 +28,7 @@ function Login(props) {
       //data.token
       props.setToken(data.token);
       //navigate to home after login
-      navigate("/");
+      navigate("/allproducts");
     }
   };
 

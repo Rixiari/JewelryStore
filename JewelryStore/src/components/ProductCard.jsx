@@ -3,14 +3,18 @@ import { useProductQuery } from "../redux/api"
 import { useParams, useNavigate } from "react-router-dom";
 import React from "react";
 
+import {addProduct} from "../redux/cartSlice"
+import { useDispatch } from "react-redux";
+
 export default function ProductCard(props) {
   // Get the item id from the url parameters
   const { productId } = useParams();
   const { data, error, isLoading } = useProductQuery(productId);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleAddToCart(product) {
-    // Logic for adding the product to the cart
+    dispatch(addProduct (product))
     console.log("Adding product to cart:", product);
     // Redirect to the cart page after adding the product
     navigate(`/carts`);
