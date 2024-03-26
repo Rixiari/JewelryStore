@@ -11,8 +11,8 @@ function NavBar(props) {
   if (props.token) {
     return (
       <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/allproducts">All Products</NavLink>
+        <NavLink to="/">home</NavLink>
+        <NavLink to="/allproducts">products</NavLink>
         <NavLink to="/carts">Cart</NavLink>
         <NavLink onClick={logoutUser}>Logout</NavLink>
       </nav>
@@ -20,10 +20,10 @@ function NavBar(props) {
   }
   return (
     <nav>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/allproducts">Products</NavLink>
-      <NavLink to="/login">Login</NavLink>
-      <NavLink to="/carts">Cart</NavLink>
+      <NavLink to="/">home</NavLink>
+      <NavLink to="/allproducts">products</NavLink>
+      <NavLink to="/login">login</NavLink>
+      <NavLink to="/carts">cart</NavLink>
     </nav>
   );
 }

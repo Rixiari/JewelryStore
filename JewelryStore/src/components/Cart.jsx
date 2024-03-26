@@ -22,33 +22,34 @@ const [message, setMessage] = useState(null);
   };
 
   return (
+    <>
+    <h2>HOUSE OF HEERA</h2>
     <div className="cart">
-      <h2>Shopping Cart</h2>
+      <h3>Your Bag</h3>
       {cart.length === 0 ? (
         <p>{message?message:"Your cart is empty"}</p>
       ) : (
         <>
-          <ul>
-            {cart.map((transaction, index) => (
-              <li key={index}>
-                <div className="cart-item">
-                  <div className="cart-item-details">
-                    <h3>{transaction.title}</h3>
-                    <p>Category: {transaction.category}</p>
-                    <p>Price: {transaction.price}</p>
-                    <p>Quantity: {transaction.quantity}</p>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <div className="cart-summary">
-            <p>Total Price: ${totalPrice.toFixed(2)}</p>
-            <button onClick={handleCheckout}>Checkout</button>
-          </div>
-        </>
-      )}
-    </div>
+        <div className="cart-items">
+          {cart.map((transaction, index) => (
+            <div className="cart-item" key={index}>
+              <div className="cart-item-details">
+                <h3>{transaction.title}</h3>
+                <p>Category: {transaction.category}</p>
+                <p>Price: {transaction.price}</p>
+                <p>Quantity: {transaction.quantity}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="cart-summary">
+          <p>Total Price: ${totalPrice.toFixed(2)}</p>
+          <button onClick={handleCheckout}>CHECKOUT</button>
+        </div>
+      </>
+    )}
+  </div>
+</>
   );
 }
 

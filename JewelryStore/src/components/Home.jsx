@@ -1,28 +1,25 @@
-import homeimg1 from '../assets/homeimg/P71.2.jpg'
-import homeimg2 from '../assets/homeimg/P129.jpg'
-import homeimg3 from '../assets/homeimg/P135.2.jpg'
-import homeimg4 from '../assets/homeimg/P142.jpg'
-import homeimg5 from '../assets/homeimg/P174.2.jpg'
-import homeimg6 from '../assets/homeimg/P176.3.jpg'
-import homeimg7 from '../assets/homeimg/P200.2.jpg'
-import homeimg8 from '../assets/homeimg/P236.3.jpg'
-import homeimg9 from '../assets/homeimg/P276.2.jpg'
+import homeimg1 from '../assets/homeimg/1.jpg'
+import homeimg2 from '../assets/homeimg/2.jpg'
+import homeimg3 from '../assets/homeimg/3.jpg'
+import homeimg4 from '../assets/homeimg/4.jpg'
+import homeimg5 from '../assets/homeimg/5.jpg'
+import homeimg6 from '../assets/homeimg/6.png'
 
 function Home() {
 
   return (
 <div>
-<h1>House of Heera</h1>
-<p>Elegant and timeless designs crafted with exquisite attention to detail, epitomizing sophistication and opulence for the discerning connoisseur of luxury.</p>
-<img src={homeimg1}/>
-<img src={homeimg2}/>
-<img src={homeimg3}/>
-<img src={homeimg4}/>
-<img src={homeimg5}/>
-<img src={homeimg6}/>
-<img src={homeimg7}/>
-<img src={homeimg8}/>
-<img src={homeimg9}/>
+<div className="image-container">
+<h1 className="brandName">HOUSE OF HEERA</h1>
+<p className='slogan'>Embrace the Wild: Your Adventure Awaits</p>
+<img src={homeimg1} alt="Image 1" style={{ width: '700px', height: '700px' }} /> {/* Example: set width and height */}
+        <img src={homeimg2} alt="Image 2" style={{ width: '500px', height: '700px' }} /> {/* Example: set width and height */}
+        <img src={homeimg4} alt="Image 4" style={{ width: '700px', height: '700px' }} /> {/* Example: set width and height */}
+        <img src={homeimg3} alt="Image 3" style={{ width: '500px', height: '700px' }} /> {/* Example: set width and height */}
+        <img src={homeimg6} alt="Image 6" style={{ width: '700px', height: '700px' }} /> {/* Example: set width and height */}
+        <img src={homeimg5} alt="Image 5" style={{ width: '500px', height: '700px' }} /> {/* Example: set width and height */}
+        
+      </div>
 </div>
 
   )

@@ -18,8 +18,16 @@ function FilterSort({ categories, onFilter, onSort }) {
   };
 
   return (
-    <div className="filter-container">
+    <div className="filter-sort-bar">
+            <select 
+      className="filter-sort-select"
+      onChange={handleSortChange}>
+        <option value="">Sort By</option>
+        <option value="price_asc">Price: Low to High</option>
+        <option value="price_desc">Price: High to Low</option>
+      </select>
       <select
+       className="filter-sort-select"
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}
       >
@@ -31,6 +39,7 @@ function FilterSort({ categories, onFilter, onSort }) {
         ))}
       </select>
       <select
+      className="filter-sort-select"
         value={selectedPriceRange}
         onChange={(e) => setSelectedPriceRange(e.target.value)}
       >
@@ -39,12 +48,11 @@ function FilterSort({ categories, onFilter, onSort }) {
         <option value="50-100">$50 - $100</option>
         <option value="100-up">$100 & Up</option>
       </select>
-      <select onChange={handleSortChange}>
-        <option value="">Sort By</option>
-        <option value="price_asc">Price: Low to High</option>
-        <option value="price_desc">Price: High to Low</option>
-      </select>
-      <button onClick={handleFilter}>Apply Filters</button>
+      <button 
+      className="filter-sort-button"
+      onClick={handleFilter}>Filter</button>
+
+
     </div>
   );
 }

@@ -37,19 +37,23 @@ export default function ProductCard(props) {
   }
 
   return (
+    <>
+    <h2>HOUSE OF HEERA</h2>
     <section className="product-wrapper">
       <div className="product-header">
         <div className="product-image-wrapper">
-          <img className="singleProduct" src={product.image} alt={product.title} />
+          <img className="singleProductImage" src={product.image} alt={product.title} />
         </div>
         <div className="product-details">
-          <h2>Title: {product.title}</h2>
-          <p>Price: {product.price}</p>
-          <p>Category: {product.category}</p>
-          <p>Description: {product.description}</p> {/* Fixing the category display */}
+          <h2>{product.title}</h2>
+          <p>${product.price}</p>
+          <p>{product.category}</p>
+          <p>{product.description}</p> {/* Fixing the category display */}
+          {props.token && <button className="add-to-cart-button" onClick={() => handleAddToCart(product)}>ADD TO CART</button>}
         </div>
       </div>
-    {props.token && <button onClick={() => handleAddToCart(product)}>Add to Cart</button>}
+    
     </section>
+    </>
   );
 }

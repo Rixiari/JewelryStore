@@ -79,7 +79,9 @@ console.log(priceRangeFilter);
   }
 
   return (
+
     <section>
+      <h1>HOUSE OF HEERA</h1>
       <FilterSort
         categories={["Electronics", "Men's clothing","Women's clothing", "Jewelery"]}
         onFilter={(filters) => {
@@ -102,9 +104,9 @@ console.log(priceRangeFilter);
               />
             </div>
             <div className="product-details">
-              <h2>Title: {product.title}</h2>
-              <p>Price: {product.price}</p>
-              <p>Category: {product.category}</p>
+              <h2 className="product-title">{product.title}</h2>
+              <p className="product-price">${product.price}</p>
+              <p className="product-category">{product.category}</p>
               {/* Render "Add to Cart" button only for logged-in users */}
               {isLoggedIn && (
                 <button onClick={() => handleAddToCart(product)}>
@@ -112,8 +114,8 @@ console.log(priceRangeFilter);
                 </button>
               )}
             </div>
-            <button onClick={() => navigate(`/products/${product.id}`)}>
-              View Details
+            <button className="view-details-button" onClick={() => navigate(`/products/${product.id}`)}>
+              Details
             </button>
           </div>
         ))}

@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 //api
 import { useLoginMutation } from "../redux/api";
+//css
+import "../App.css";
+import homeimg1 from '../assets/homeimg/1.jpg'
 
 
 
@@ -40,13 +43,13 @@ function Login(props) {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <>
+    <h2>HOUSE OF HEERA</h2>
+    <div className="login-container">
       {/*error message */}
-      {errorMsg ? <p>errorMsg</p> : <span />}
-      <form onSubmit={loginEvent}>
-        <label>
-          Username
+      {errorMsg ? <p className="error-message">errorMsg</p> : <span />}
+      <form className="login-form" onSubmit={loginEvent}>
+        <label htmlFor="username"> username</label>
           <input
             type="text"
             placeholder="Username"
@@ -54,9 +57,9 @@ function Login(props) {
             value={userInfo.username}
             onChange={onUserInput}
           />
-        </label>
 
-        <label htmlFor="password">Password</label>
+
+        <label htmlFor="password">password</label>
         <input
           name="password"
           type="password"
@@ -64,9 +67,10 @@ function Login(props) {
           value={userInfo.password}
           onChange={onUserInput}
         />
-        <button>Login</button>
+        <button>LOGIN</button>
       </form>
     </div>
+    </>
   );
 }
 
